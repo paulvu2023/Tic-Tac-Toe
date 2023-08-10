@@ -1,23 +1,5 @@
 const gameboard = (() => {
     let board = new Array(9);
-    
-    const checkForWin = (symbol) => {
-        let win = true;
-        for (let i = 0; i <= 6; i += 3) {
-            if (checkHorizontalWin(symbol, i) == false) {
-                win = false;
-            }
-        }
-        for (let i = 0; i < 3; i++) {
-            if (checkVerticalWin(symbol, i) == false) {
-                win = false;
-            }
-        }
-        checkBackSlashWin(0);
-        checkSlashWin(6)
-    };
-
-    
 
     const updateBoard = () => {
         for (let i = 0; i < 9; i++){
@@ -44,6 +26,43 @@ const gameboard = (() => {
         } else {
             return false;
         }
+    };
+
+    const checkHorizontalWin = (symbol, i) => {
+        if (arr[i] == symbol && arr[i+1] == symbol && arr[i+2] == symbol) {
+            return true;
+        }
+        return false;
+    };
+
+    const checkVerticalWin = (symbol, i) => {
+        if (arr[i] == symbol && arr[i+3] == symbol && arr[i+6] == symbol) {
+            return true;
+        }
+        return false;
+    };
+
+    const checkBackslashWin = (symbol, i) => {
+        if (arr[i] == symbol && arr[i+1] == symbol && arr[i+2] == symbol) {
+            return true;
+        }
+        return false;
+    };
+
+    const checkForWin = (symbol) => {
+        let win = true;
+        for (let i = 0; i <= 6; i += 3) {
+            if (checkHorizontalWin(symbol, i) == false) {
+                win = false;
+            }
+        }
+        for (let i = 0; i < 3; i++) {
+            if (checkVerticalWin(symbol, i) == false) {
+                win = false;
+            }
+        }
+        checkBackslashWin(0);
+        checkSlashWin(6)
     };
 
     return {changeBoardArray, checkEmptySquare};
