@@ -8,18 +8,21 @@ const gameboard = (() => {
                 currentSquare.textContent = board[i];
             }
         }
-        checkForWin(playerOne.symbol);
-        checkForWin(playerTwo.symbol);
+        if (checkForWin(playerOne.symbol) == false) {
+            console.log('1 win')
+        } else if (checkForWin(playerTwo.symbol) == false) {
+            console.log('2 win');
+        }
     };
 
-    const logBoard = () => {console.log(board)};
-    
     const changeBoardArray = (symbol, boardIndex) => {
         board[boardIndex] = symbol;
         updateBoard();
         logBoard();
     };
 
+    const logBoard = () => {console.log(board)};
+    
     const checkEmptySquare = (square) => {
         if (board[square] == undefined){
             return true;
@@ -68,8 +71,12 @@ const gameboard = (() => {
                 win = false;
             }
         }
-        checkBackslashWin(0);
-        checkSlashWin(6)
+        if (checkBackslashWin(0) == false) {
+            win = false;
+        } else if (checkSlashWin(6) == false) {
+            win = false;
+        }
+        return win;
     };
 
     return {changeBoardArray, checkEmptySquare};
