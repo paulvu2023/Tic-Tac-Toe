@@ -7,6 +7,7 @@ const gameboard = (() => {
             const currentSquare = document.querySelectorAll('.square')[i];
             currentSquare.textContent = '';
         }
+        document.querySelector('h1').textContent = 'Tic Tac Toe';
     }
 
     const updateBoard = () => {
@@ -17,9 +18,9 @@ const gameboard = (() => {
             }
         }
         if (checkForWin(playerOne.symbol) == true) {
-            console.log('1 win')
+            document.querySelector('h1').textContent = `${playerOne.name} Wins!`;
         } else if (checkForWin(playerTwo.symbol) == true) {
-            console.log('2 win');
+            document.querySelector('h1').textContent = `${playerTwo.name} Wins!`;
         }
     };
 
@@ -87,8 +88,11 @@ const gameboard = (() => {
     return {resetBoard, changeBoardArray, checkEmptySquare};
 })();
 
-const playerFactory = (symbol) => {
-    return {symbol};
+const playerFactory = (symbol, name = undefined) => {
+    if (name == undefined) {
+        name = `Player ${symbol}`;
+    }
+    return {symbol, name};
 }
 
 const playerOne = playerFactory('X');
