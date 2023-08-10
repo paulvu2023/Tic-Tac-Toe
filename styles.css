@@ -13,19 +13,19 @@ h1 {
     display: grid;
     justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(3, calc(100px + 6vw));
+    grid-template-columns: repeat(3, calc(100px + 5vw));
     gap: 10px;
 }
 
 .square {
-    width: calc(100px + 6vw);
-    height: calc(100px + 6vw);
+    width: calc(100px + 5vw);
+    height: calc(100px + 5vw);
     background-color: rgb(123, 207, 123);
     border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: calc(100px + 5vw);
+    font-size: calc(100px + 4vw);
     border: none;
 }
 
