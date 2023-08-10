@@ -1,13 +1,22 @@
 const gameboard = (() => {
     let board = new Array(9);
     
+    const updateBoard = () => {
+        for (let i = 0; i < 9; i++){
+            const currentSquare = document.querySelectorAll('.square')[i];
+            if (board[i] == 'X' || board[i] == 'O') {
+                currentSquare.textContent = board[i];
+            }
+        }
+    }
+
     const logBoard = () => {console.log(board)};
     
-    const changeBoard = (symbol, boardIndex) => {
+    const changeBoardArray = (symbol, boardIndex) => {
         board[boardIndex] = symbol;
     };
 
-    return {logBoard, changeBoard};
+    return {updateBoard, logBoard, changeBoardArray};
 })();
 
 const playerFactory = (symbol) => {
@@ -17,5 +26,6 @@ const playerFactory = (symbol) => {
 const playerOne = playerFactory('X');
 const playerTwo = playerFactory('O');
 
-gameboard.changeBoard(playerOne.symbol, 8);
+gameboard.changeBoardArray(playerOne.symbol, 8);
 gameboard.logBoard();
+gameboard.updateBoard();
