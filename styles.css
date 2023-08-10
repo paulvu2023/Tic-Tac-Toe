@@ -1,11 +1,18 @@
 body {
     font-family: 'Indie Flower', cursive;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+html, body {
+    height: 100%;
 }
 
 h1 {
     display: flex;
     justify-content: center;
-    font-size: 100px;
+    font-size: calc(50px + 3vw);
     margin: 0;
 }
 
@@ -36,4 +43,20 @@ button {
 
 button:hover {
     transform: scale(1.05);
+}
+
+.reset-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.reset {
+    width: calc(50px + 6vw);
+    height: calc(50px + 3vw);
+    border: 1px solid black;
+    border-radius: 12px;
+    background: white;
+    font-size: calc(30px + 1vw);
 }
