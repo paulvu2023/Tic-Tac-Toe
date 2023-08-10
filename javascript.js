@@ -8,15 +8,17 @@ const gameboard = (() => {
                 currentSquare.textContent = board[i];
             }
         }
-    }
+    };
 
     const logBoard = () => {console.log(board)};
     
     const changeBoardArray = (symbol, boardIndex) => {
         board[boardIndex] = symbol;
+        updateBoard();
+        logBoard();
     };
 
-    return {updateBoard, logBoard, changeBoardArray};
+    return {changeBoardArray};
 })();
 
 const playerFactory = (symbol) => {
@@ -26,7 +28,16 @@ const playerFactory = (symbol) => {
 const playerOne = playerFactory('X');
 const playerTwo = playerFactory('O');
 
-gameboard.changeBoardArray(playerOne.symbol, 8);
-gameboard.changeBoardArray(playerTwo.symbol, 7);
-gameboard.logBoard();
-gameboard.updateBoard();
+let player1Turn = true; // If it is true then it's player 1's turn, otherwise it's player 2's turn
+
+squares = document.querySelectorAll('.square');
+squares.forEach((square) => {
+    square.addEventListener('click', () => {
+        if (player1Turn == true) {
+            gameboard.changeBoardArray(playerOne.symbol, square.value);
+        } else if (player1Turn == false) {
+            gameboard.changeBoardArray(playerTwo.symbol, square.value);
+        }
+    });
+});
+
