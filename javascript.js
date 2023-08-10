@@ -1,6 +1,14 @@
 const gameboard = (() => {
     let board = new Array(9);
 
+    const resetBoard = () => {
+        for (let i = 0; i < board.length; i++) {
+            board[i] = undefined;
+            const currentSquare = document.querySelectorAll('.square')[i];
+            currentSquare.textContent = '';
+        }
+    }
+
     const updateBoard = () => {
         for (let i = 0; i < 9; i++){
             const currentSquare = document.querySelectorAll('.square')[i];
@@ -15,7 +23,7 @@ const gameboard = (() => {
         }
     };
 
-    const changeBoardboarday = (symbol, boardIndex) => {
+    const changeBoardArray = (symbol, boardIndex) => {
         board[boardIndex] = symbol;
         updateBoard();
     };
@@ -76,7 +84,7 @@ const gameboard = (() => {
         return win;
     };
 
-    return {changeBoardboarday, checkEmptySquare};
+    return {resetBoard, changeBoardArray, checkEmptySquare};
 })();
 
 const playerFactory = (symbol) => {
@@ -95,13 +103,15 @@ squares.forEach((square) => {
 
         } else {
             if (playerOneTurn == true) {
-                gameboard.changeBoardboarday(playerOne.symbol, square.value);
+                gameboard.changeBoardArray(playerOne.symbol, square.value);
                 playerOneTurn = false;
             } else if (playerOneTurn == false) {
-                gameboard.changeBoardboarday(playerTwo.symbol, square.value);
+                gameboard.changeBoardArray(playerTwo.symbol, square.value);
                 playerOneTurn = true;
             }
         }
     });
 });
 
+resetButton = document.querySelector('.reset');
+resetButton.addEventListener('click', gameboard.resetBoard);
