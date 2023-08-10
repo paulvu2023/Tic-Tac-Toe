@@ -8,14 +8,14 @@ const gameboard = (() => {
                 currentSquare.textContent = board[i];
             }
         }
-        if (checkForWin(playerOne.symbol) == false) {
+        if (checkForWin(playerOne.symbol) == true) {
             console.log('1 win')
-        } else if (checkForWin(playerTwo.symbol) == false) {
+        } else if (checkForWin(playerTwo.symbol) == true) {
             console.log('2 win');
         }
     };
 
-    const changeBoardArray = (symbol, boardIndex) => {
+    const changeBoardboarday = (symbol, boardIndex) => {
         board[boardIndex] = symbol;
         updateBoard();
         logBoard();
@@ -32,54 +32,54 @@ const gameboard = (() => {
     };
 
     const checkHorizontalWin = (symbol, i) => {
-        if (arr[i] == symbol && arr[i+1] == symbol && arr[i+2] == symbol) {
+        if (board[i] == symbol && board[i+1] == symbol && board[i+2] == symbol) {
             return true;
         }
         return false;
     };
 
     const checkVerticalWin = (symbol, i) => {
-        if (arr[i] == symbol && arr[i+3] == symbol && arr[i+6] == symbol) {
+        if (board[i] == symbol && board[i+3] == symbol && board[i+6] == symbol) {
             return true;
         }
         return false;
     };
 
     const checkBackslashWin = (symbol, i) => {
-        if (arr[i] == symbol && arr[i+4] == symbol && arr[i+8] == symbol) {
+        if (board[i] == symbol && board[i+4] == symbol && board[i+8] == symbol) {
             return true;
         }
         return false;
     };
 
     const checkSlashWin = (symbol, i) => {
-        if (arr[i] == symbol && arr[i-2] == symbol && arr[i-4] == symbol) {
+        if (board[i] == symbol && board[i-2] == symbol && board[i-4] == symbol) {
             return true;
         }
         return false;
     };
 
     const checkForWin = (symbol) => {
-        let win = true;
+        let win = false;
         for (let i = 0; i <= 6; i += 3) {
-            if (checkHorizontalWin(symbol, i) == false) {
-                win = false;
+            if (checkHorizontalWin(symbol, i) == true) {
+                win = true;
             }
         }
         for (let i = 0; i < 3; i++) {
-            if (checkVerticalWin(symbol, i) == false) {
-                win = false;
+            if (checkVerticalWin(symbol, i) == true) {
+                win = true;
             }
         }
-        if (checkBackslashWin(0) == false) {
-            win = false;
-        } else if (checkSlashWin(6) == false) {
-            win = false;
+        if (checkBackslashWin(symbol, 0) == true) {
+            win = true;
+        } else if (checkSlashWin(symbol, 6) == true) {
+            win = true;
         }
         return win;
     };
 
-    return {changeBoardArray, checkEmptySquare};
+    return {changeBoardboarday, checkEmptySquare};
 })();
 
 const playerFactory = (symbol) => {
@@ -98,10 +98,10 @@ squares.forEach((square) => {
 
         } else {
             if (playerOneTurn == true) {
-                gameboard.changeBoardArray(playerOne.symbol, square.value);
+                gameboard.changeBoardboarday(playerOne.symbol, square.value);
                 playerOneTurn = false;
             } else if (playerOneTurn == false) {
-                gameboard.changeBoardArray(playerTwo.symbol, square.value);
+                gameboard.changeBoardboarday(playerTwo.symbol, square.value);
                 playerOneTurn = true;
             }
         }
