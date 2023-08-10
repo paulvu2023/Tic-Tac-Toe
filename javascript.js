@@ -35,8 +35,10 @@ squares.forEach((square) => {
     square.addEventListener('click', () => {
         if (player1Turn == true) {
             gameboard.changeBoardArray(playerOne.symbol, square.value);
+            player1Turn = false;
         } else if (player1Turn == false) {
             gameboard.changeBoardArray(playerTwo.symbol, square.value);
+            player1Turn = true;
         }
     });
 });
