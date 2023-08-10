@@ -55,7 +55,7 @@ button:hover {
 .reset {
     width: calc(50px + 6vw);
     height: calc(50px + 3vw);
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 12px;
     background: white;
     font-size: calc(30px + 1vw);
