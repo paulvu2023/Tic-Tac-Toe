@@ -22,6 +22,9 @@ const gameboard = (() => {
         } else if (checkForWin(playerTwo.symbol) == true) {
             document.querySelector('h1').textContent = `${playerTwo.name} Wins!`;
         }
+
+        playerOne.name = document.querySelector('#X').value;
+        playerTwo.name = document.querySelector('#O').value;
     };
 
     const changeBoardArray = (symbol, boardIndex) => {
@@ -123,6 +126,5 @@ squares.forEach((square) => {
 
 const playerOne = playerFactory('X');
 const playerTwo = playerFactory('O');
-
 resetButton = document.querySelector('.reset');
 resetButton.addEventListener('click', gameboard.resetBoard);
