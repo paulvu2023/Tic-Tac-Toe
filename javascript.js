@@ -14,5 +14,8 @@ const playerFactory = (symbol) => {
     return {symbol};
 }
 
-gameboard.changeBoard('X', 8);
+const playerOne = playerFactory('X');
+const playerTwo = playerFactory('O');
+
+gameboard.changeBoard(playerOne.symbol, 8);
 gameboard.logBoard();
