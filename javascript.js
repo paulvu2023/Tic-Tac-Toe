@@ -26,7 +26,7 @@ const gameboard = (() => {
         }
     };
 
-    return {changeBoardArray, checkSquare};
+    return {changeBoardArray, checkEmptySquare};
 })();
 
 const playerFactory = (symbol) => {
@@ -41,13 +41,16 @@ let player1Turn = true; // If it is true then it's player 1's turn, otherwise it
 squares = document.querySelectorAll('.square');
 squares.forEach((square) => {
     square.addEventListener('click', () => {
-        
-        if (player1Turn == true) {
-            gameboard.changeBoardArray(playerOne.symbol, square.value);
-            player1Turn = false;
-        } else if (player1Turn == false) {
-            gameboard.changeBoardArray(playerTwo.symbol, square.value);
-            player1Turn = true;
+        if (gameboard.checkEmptySquare(square.value) == false) {
+
+        } else {
+            if (player1Turn == true) {
+                gameboard.changeBoardArray(playerOne.symbol, square.value);
+                player1Turn = false;
+            } else if (player1Turn == false) {
+                gameboard.changeBoardArray(playerTwo.symbol, square.value);
+                player1Turn = true;
+            }
         }
     });
 });
