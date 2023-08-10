@@ -43,7 +43,14 @@ const gameboard = (() => {
     };
 
     const checkBackslashWin = (symbol, i) => {
-        if (arr[i] == symbol && arr[i+1] == symbol && arr[i+2] == symbol) {
+        if (arr[i] == symbol && arr[i+4] == symbol && arr[i+8] == symbol) {
+            return true;
+        }
+        return false;
+    };
+
+    const checkSlashWin = (symbol, i) => {
+        if (arr[i] == symbol && arr[i-2] == symbol && arr[i-4] == symbol) {
             return true;
         }
         return false;
