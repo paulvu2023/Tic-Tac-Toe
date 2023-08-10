@@ -14,10 +14,12 @@ h1 {
     justify-content: center;
     align-items: center;
     grid-template-columns: repeat(3, calc(100px + 7vw));
+    gap: 10px;
 }
 
 .square {
     width: calc(100px + 7vw);
     height: calc(100px + 7vw);
-    background-color: green;
+    background-color: rgb(123, 207, 123);
+    border-radius: 30px;
 }
