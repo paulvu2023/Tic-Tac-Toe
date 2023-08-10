@@ -1,6 +1,24 @@
 const gameboard = (() => {
     let board = new Array(9);
     
+    const checkForWin = (symbol) => {
+        let win = true;
+        for (let i = 0; i <= 6; i += 3) {
+            if (checkHorizontalWin(symbol, i) == false) {
+                win = false;
+            }
+        }
+        for (let i = 0; i < 3; i++) {
+            if (checkVerticalWin(symbol, i) == false) {
+                win = false;
+            }
+        }
+        checkBackSlashWin(0);
+        checkSlashWin(6)
+    };
+
+    
+
     const updateBoard = () => {
         for (let i = 0; i < 9; i++){
             const currentSquare = document.querySelectorAll('.square')[i];
@@ -8,6 +26,8 @@ const gameboard = (() => {
                 currentSquare.textContent = board[i];
             }
         }
+        checkForWin(playerOne.symbol);
+        checkForWin(playerTwo.symbol);
     };
 
     const logBoard = () => {console.log(board)};
@@ -36,7 +56,7 @@ const playerFactory = (symbol) => {
 const playerOne = playerFactory('X');
 const playerTwo = playerFactory('O');
 
-let player1Turn = true; // If it is true then it's player 1's turn, otherwise it's player 2's turn
+let playerOneTurn = true; // If it is true then it's player 1's turn, otherwise it's player 2's turn
 
 squares = document.querySelectorAll('.square');
 squares.forEach((square) => {
@@ -44,12 +64,12 @@ squares.forEach((square) => {
         if (gameboard.checkEmptySquare(square.value) == false) {
 
         } else {
-            if (player1Turn == true) {
+            if (playerOneTurn == true) {
                 gameboard.changeBoardArray(playerOne.symbol, square.value);
-                player1Turn = false;
-            } else if (player1Turn == false) {
+                playerOneTurn = false;
+            } else if (playerOneTurn == false) {
                 gameboard.changeBoardArray(playerTwo.symbol, square.value);
-                player1Turn = true;
+                playerOneTurn = true;
             }
         }
     });
