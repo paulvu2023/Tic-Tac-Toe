@@ -22,4 +22,8 @@ h1 {
     height: calc(100px + 7vw);
     background-color: rgb(123, 207, 123);
     border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(100px + 6vw);
 }

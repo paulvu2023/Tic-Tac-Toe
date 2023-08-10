@@ -27,5 +27,6 @@ const playerOne = playerFactory('X');
 const playerTwo = playerFactory('O');
 
 gameboard.changeBoardArray(playerOne.symbol, 8);
+gameboard.changeBoardArray(playerTwo.symbol, 7);
 gameboard.logBoard();
 gameboard.updateBoard();
