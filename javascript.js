@@ -18,10 +18,7 @@ const gameboard = (() => {
     const changeBoardboarday = (symbol, boardIndex) => {
         board[boardIndex] = symbol;
         updateBoard();
-        logBoard();
     };
-
-    const logBoard = () => {console.log(board)};
     
     const checkEmptySquare = (square) => {
         if (board[square] == undefined){
