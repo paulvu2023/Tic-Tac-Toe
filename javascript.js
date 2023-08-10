@@ -92,15 +92,19 @@ const playerFactory = (symbol, name = undefined) => {
     if (name == undefined) {
         name = `Player ${symbol}`;
     }
+    const inputField = document.querySelector(`#${symbol}`);
+    const form = document.querySelector(`#${symbol}-form`);
+
+    form.onsubmit = (event) => {
+        event.preventDefault();
+        name = inputField.value;
+    };
     return {symbol, name};
 }
 
-const playerOne = playerFactory('X');
-const playerTwo = playerFactory('O');
-
 let playerOneTurn = true; // If it is true then it's player 1's turn, otherwise it's player 2's turn
 
-squares = document.querySelectorAll('.square');
+let squares = document.querySelectorAll('.square');
 squares.forEach((square) => {
     square.addEventListener('click', () => {
         if (gameboard.checkEmptySquare(square.value) == false) {
@@ -116,6 +120,9 @@ squares.forEach((square) => {
         }
     });
 });
+
+const playerOne = playerFactory('X');
+const playerTwo = playerFactory('O');
 
 resetButton = document.querySelector('.reset');
 resetButton.addEventListener('click', gameboard.resetBoard);
