@@ -18,9 +18,17 @@ const gameboard = (() => {
             }
         }
         if (checkForWin(playerOne.symbol) == true) {
-            document.querySelector('h1').textContent = `${playerOne.name} Wins!`;
+            if (playerOne.name == '') {
+                document.querySelector('h1').textContent = 'X Wins!';
+            } else {
+                document.querySelector('h1').textContent = `${playerOne.name} Wins!`;
+            }
         } else if (checkForWin(playerTwo.symbol) == true) {
-            document.querySelector('h1').textContent = `${playerTwo.name} Wins!`;
+            if (playerTwo.name == '') {
+                document.querySelector('h1').textContent = 'O Wins!';
+            } else {
+                document.querySelector('h1').textContent = `${playerTwo.name} Wins!`;
+            }
         }
 
         playerOne.name = document.querySelector('#X').value;
@@ -91,10 +99,9 @@ const gameboard = (() => {
     return {resetBoard, changeBoardArray, checkEmptySquare};
 })();
 
-const playerFactory = (symbol, name = undefined) => {
-    if (name == undefined) {
-        name = `Player ${symbol}`;
-    }
+const playerFactory = (symbol) => {
+    let name = '';
+
     const inputField = document.querySelector(`#${symbol}`);
     const form = document.querySelector(`#${symbol}-form`);
 
@@ -102,6 +109,11 @@ const playerFactory = (symbol, name = undefined) => {
         event.preventDefault();
         name = inputField.value;
     };
+
+    if (name == '') {
+        name = `Player ${symbol}`;
+    }
+
     return {symbol, name};
 }
 
